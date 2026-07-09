@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f4f7f6; padding: 10px; font-family: 'Inter', sans-serif; margin: 0; }
+    .filter-section { background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; }
+    .product-card { border: none; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); transition: 0.3s; height: 100%; display: flex; flex-direction: column; background: white; }
+    .product-img { height: 160px; object-fit: contain; padding: 10px; background: #fff; border-bottom: 1px solid #f1f1f1; border-radius: 12px 12px 0 0; }
+    .product-cat { font-size: 0.7rem; text-transform: uppercase; color: #999; margin-bottom: 4px; font-weight: 600; }
+    .product-title { font-size: 0.9rem; line-height: 1.3; margin-bottom: 8px; color: #333; font-weight: 500; height: 2.6em; overflow: hidden; }
+    .product-code { color: #4f46e5; font-weight: 700; font-size: 0.8rem; margin-bottom: 8px; }
+    .price-main { font-size: 1.25rem; color: #0d6efd; font-weight: 700; line-height: 1.1; }
+    .price-vat { font-size: 0.8rem; color: #6c757d; }
+    .cat-parent { font-weight: bold; background: #f8f9fa; padding: 5px 10px; color: #333; margin-top: 5px; }
+    .cat-child { padding-left: 25px; font-size: 0.85rem; }
+    .card-disabled { opacity: 0.6; filter: grayscale(0.5); }
+    .no-drop-alert { background: #fff5f5; color: #e53e3e; border: 1px solid #feb2b2; border-radius: 8px; font-size: 0.7rem; padding: 5px; text-align: center; font-weight: bold; }
+    #conditions-box { background: white; padding: 25px; border-radius: 12px; margin-top: 30px; border: 1px solid #eee; margin-bottom: 30px; }
+
+    /* Маленька анімована людинка */
+    .loader-container { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; }
+    .walking-man { width: 60px; height: 60px; animation: walk 2.5s infinite linear; }
+    @keyframes walk { 
+      0% { transform: translateX(-40px); opacity: 0; } 
+      20% { opacity: 1; } 
+      80% { opacity: 1; } 
+      100% { transform: translateX(40px); opacity: 0; } 
+    }
+    .loader-text { font-size: 0.85rem; font-weight: 600; color: #4f46e5; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="filter-section">
+    <div class="row g-2 align-items-end">
+      <div class="col-6 col-md-2">
+        <label class="form-label fw-bold small text-secondary">Kategorie</label>
+        <div class="dropdown">
+          <button class="btn btn-light border w-100 text-start dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown">Wybór kategorii</button>
+          <div class="dropdown-menu p-2" id="categoryContainer" style="max-height:400px; overflow-y:auto; min-width:250px;"></div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <label class="form-label fw-bold small text-secondary d-block">Rodzaj ceny</label>
+        <div class="btn-group btn-group-sm w-100">
+          <input type="radio" class="btn-check" name="priceType" id="p_local" value="local" checked onchange="applyFilters()">
+          <label class="btn btn-outline-primary" for="p_local">Cena Żarów</label>
+          <input type="radio" class="btn-check" name="priceType" id="p_drop" value="drop" onchange="applyFilters()">
+          <label class="btn btn-outline-primary" for="p_drop">Cena z dostawą</label>
+          
+          <input type="radio" class="btn-check" name="priceType" id="p_dropshipping" value="dropshipping" onchange="applyFilters()">
+          <label class="btn btn-outline-primary" for="p_dropshipping">Cena Dropshipping</label>
+        </div>
+      </div>
+      <div class="col-12 col-md-7">
+        <label class="form-label fw-bold small text-secondary">Wyszukiwanie</label>
+        <input type="text" id="searchInput" class="form-control form-control-sm" placeholder="Szukaj nazwy lub SKU..." onkeyup="applyFilters()">
+      </div>
+    </div>
+  </div>
+
+  <div id="catalogContainer" class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-3">
+    <div class="text-center w-100 mt-5" id="loader">
+      <div class="loader-container">
+        <svg class="walking-man" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="15" r="5" fill="#333"/>
+          <path d="M32 20V40M32 25L22 35M32 25L42 35M32 40L25 55M32 40L39 55" stroke="#333" stroke-width="3" stroke-linecap="round"/>
+          <g transform="rotate(-20 32 25)">
+            <path d="M10 20H54M10 30H54M15 18V32M25 18V32M35 18V32M45 18V32M55 18V32" stroke="#4f46e5" stroke-width="2" stroke-linecap="round"/>
+          </g>
+        </svg>
+        <p class="loader-text">Dostarczamy produkty... (Ładowanie)</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="conditions-box" style="display:none;">
+    <h4 class="fw-bold mb-3">Warunki handlowe:</h4>
+    <div id="conditionsText" style="line-height:1.6; color:#555;"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  let allProducts = [];
+
+  window.onload = () => {
+  // Встав сюди НОВЕ посилання Web App, яке ти отримав після New Deployment
+  // Обов'язково в кінці додаємо: ?get=data
+  const webAppUrl = "https://script.google.com/macros/s/AKfycbyUeaVAhZaS5cCbtrgDCrpKvWH-ubcaaENNILoJzSBAZwDKX7RVBxDQscayVInbufsw/exec?get=data";
+
+  fetch(webAppUrl)
+    .then(response => {
+      if (!response.ok) throw new Error("Помилка мережі");
+      return response.json();
+    })
+    .then(data => {
+      if (data.error) throw new Error(data.error);
+      
+      allProducts = data.items;
+      if (data.conditions) {
+        document.getElementById('conditionsText').innerHTML = data.conditions.replace(/\n/g, '<br>');
+        document.getElementById('conditions-box').style.display = 'block';
+      }
+      renderCategoryTree(allProducts);
+      renderCards(allProducts);
+      document.getElementById('loader')?.remove();
+    })
+    .catch(error => {
+      console.error("Помилка завантаження даних:", error);
+      const loader = document.getElementById('loader');
+      if (loader) {
+        loader.innerHTML = "<p class='text-danger text-center'>Помилка завантаження даних каталогу. Спробуйте оновити сторінку.</p>";
+      }
+    });
+};
+
+
+  function renderCategoryTree(data) {
+    const container = document.getElementById('categoryContainer');
+    const tree = {};
+    data.forEach(item => {
+      const parts = String(item.category).split(',').map(s => s.trim());
+      const parent = parts[0] || "Inne";
+      if (!tree[parent]) tree[parent] = new Set();
+      if (parts[1]) tree[parent].add(parts[1]);
+    });
+    let html = '';
+    Object.keys(tree).sort().forEach(p => {
+      html += `<div class="cat-parent small">${p}</div>`;
+      html += `<div class="form-check cat-child"><input class="form-check-input cat-check" type="checkbox" value="${p}" data-mode="parent" onchange="applyFilters()"><label class="form-check-label w-100">Wszystkie</label></div>`;
+      Array.from(tree[p]).sort().forEach(c => {
+        html += `<div class="form-check cat-child"><input class="form-check-input cat-check" type="checkbox" value="${c}" data-mode="child" onchange="applyFilters()"><label class="form-check-label w-100">${c}</label></div>`;
+      });
+    });
+    container.innerHTML = html;
+  }
+
+  function renderCards(items) {
+    const container = document.getElementById('catalogContainer');
+    
+    // Зчитуємо стани кнопок вибору ціни
+    const isDropMode = document.getElementById('p_drop').checked;
+    const isDropshippingMode = document.getElementById('p_dropshipping').checked;
+
+    container.innerHTML = items.map(item => {
+      // Прямий вибір ціни залежно від активного режиму
+      let pRaw, vRaw;
+      if (isDropMode) {
+        pRaw = item.priceDrop;
+        vRaw = item.vatDrop;
+      } else if (isDropshippingMode) {
+        pRaw = item.priceDropshipping;
+        vRaw = item.vatDropshipping;
+      } else {
+        pRaw = item.price;
+        vRaw = item.vat;
+      }
+
+      // Умова "BRAK" — якщо увімкнено один із додаткових режимів і ціна порожня або 0
+      const isUnavailable = (isDropMode || isDropshippingMode) && (!pRaw || parseFloat(String(pRaw).replace(',','.')) === 0);
+
+      const parsePrice = (val) => {
+        if (!val) return 0;
+        let s = String(val).replace(/\s/g, '').replace(',', '.');
+        let n = parseFloat(s);
+        return isNaN(n) ? 0 : n;
+      };
+
+      let p = parsePrice(pRaw);
+      let v = parsePrice(vRaw);
+
+      const priceFormatted = p.toLocaleString('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const vatFormatted = v.toLocaleString('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+      const links = item.productUrls || [];
+      let actionHtml = '';
+
+      // ЛОГІКА КНОПОК ДЛЯ СИМЕТРІЇ
+      if (isUnavailable) {
+        actionHtml = `<div class="no-drop-alert mt-2">BRAK</div>`;
+      } else if (links.length === 0) {
+        actionHtml = `<button class="btn btn-sm btn-light w-100 py-1 fw-bold mt-2 text-muted border" disabled style="font-size:0.75rem; cursor: not-allowed;">Brak danych</button>`;
+      } else if (links.length === 1) {
+        actionHtml = `<a href="${links[0].url}" target="_blank" class="btn btn-sm btn-primary w-100 py-1 fw-bold mt-2" style="font-size:0.75rem">${links[0].label}</a>`;
+      } else if (links.length > 1) {
+        actionHtml = `
+          <div class="dropdown mt-2">
+            <button class="btn btn-sm btn-primary dropdown-toggle w-100 py-1 fw-bold" type="button" data-bs-toggle="dropdown" style="font-size:0.75rem">Materiały produktu</button>
+            <ul class="dropdown-menu shadow">
+              ${links.map(l => `<li><a class="dropdown-item" href="${l.url}" target="_blank">${l.label}</a></li>`).join('')}
+            </ul>
+          </div>`;
+      }
+
+      return `<div class="col">
+        <div class="card product-card ${isUnavailable ? 'card-disabled' : ''}">
+          <img src="${item.photo}" class="product-img" referrerpolicy="no-referrer">
+          <div class="card-body d-flex flex-column">
+            <div class="product-cat">${item.category}</div>
+            <div class="product-title">${item.title}</div>
+            <div class="product-code">SKU: ${item.code}</div>
+            <div class="mt-auto pt-2 border-top">
+              ${isUnavailable ? '<div class="text-center py-2">—</div>' : `
+                <div class="price-main">${priceFormatted} <small style="font-size:0.7rem">zł</small></div>
+                <div class="price-vat mb-1">z VAT: ${vatFormatted}</div>
+              `}
+              ${actionHtml}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  function applyFilters() {
+    const search = document.getElementById('searchInput').value.toLowerCase();
+    const activeChecks = Array.from(document.querySelectorAll('.cat-check:checked'));
+    const filtered = allProducts.filter(p => {
+      const matchSearch = p.title.toLowerCase().includes(search) || p.code.toLowerCase().includes(search);
+      if (activeChecks.length === 0) return matchSearch;
+      const itemCats = p.category.split(',').map(s => s.trim());
+      const matchCat = activeChecks.some(check => {
+        if (check.dataset.mode === 'parent') return itemCats[0] === check.value;
+        return itemCats.includes(check.value);
+      });
+      return matchSearch && matchCat;
+    });
+    renderCards(filtered);
+  }
+</script>
+</body>
+</html>
