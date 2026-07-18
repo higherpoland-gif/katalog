@@ -3,7 +3,6 @@
 <head>
   <base target="_top">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Katalog on-line</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -17,7 +16,7 @@
       margin: 0;
     }
 
-    /* ХЕДЕР */
+    /* --- ХЕДЕР --- */
     .top-header {
       background: white;
       padding: 12px 20px;
@@ -27,556 +26,406 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 12px;
-      position: relative;
-      z-index: 100;
     }
-    .logo-area { display: flex; align-items: center; gap: 12px; }
-    .logo-img { height: 40px; width: auto; object-fit: contain; }
-    .header-address { font-size: 0.85rem; color: #475569; text-align: right; line-height: 1.4; }
-    .header-address strong { color: #0f172a; }
-    .header-contact-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #4f46e5;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .header-contact-btn:hover {
-      background: #4338ca;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-      color: white;
-    }
-    .header-right {
+    .logo-area {
       display: flex;
       align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .logo-img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+    .company-name {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #1e293b;
+      letter-spacing: -0.3px;
+    }
+    .header-address {
+      font-size: 0.85rem;
+      color: #475569;
+      text-align: right;
+      line-height: 1.4;
+    }
+    .header-address strong {
+      color: #0f172a;
     }
 
-    /* ФІКСОВАНА ПАНЕЛЬ ФІЛЬТРІВ */
+    /* --- ФІКСОВАНА ПАНЕЛЬ ФІЛЬТРІВ --- */
     .sticky-filter {
       position: sticky;
       top: 0;
-      z-index: 10001 !important;
+      z-index: 100;
       background: white;
       padding: 12px 20px;
       border-bottom: 1px solid #e9edf4;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       transition: box-shadow 0.2s;
     }
-    .sticky-filter.scrolled { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .sticky-filter.scrolled {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
     .filter-section {
-      display: flex; flex-wrap: wrap; align-items: flex-end;
-      gap: 12px 16px; max-width: 1400px; margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 12px 16px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
-    .filter-group { flex: 1 1 160px; min-width: 130px; }
-    .filter-group-search { flex: 2 1 200px; }
+    .filter-group {
+      flex: 1 1 160px;
+      min-width: 130px;
+    }
     .filter-group label {
-      font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.4px; color: #64748b; display: block; margin-bottom: 3px;
-    }
-    .filter-group .form-control, .filter-group .form-select {
-      font-size: 0.85rem; border-radius: 8px; border: 1px solid #e2e8f0;
-      background: #fafcff; padding: 6px 12px;
-    }
-    .filter-group .form-control:focus, .filter-group .form-select:focus {
-      border-color: #4f46e5; box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
-    }
-    .btn-managers {
-      background: #4f46e5;
-      color: white;
-      border: none;
-      padding: 7px 14px;
-      border-radius: 8px;
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      align-self: flex-end;
-    }
-    .btn-managers:hover {
-      background: #4338ca;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-    }
-    .btn-reset-filters {
-      background: white;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
       color: #64748b;
-      border: 1px solid #e2e8f0;
-      padding: 7px 14px;
-      border-radius: 8px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      align-self: flex-end;
+      display: block;
+      margin-bottom: 3px;
     }
-    .btn-reset-filters:hover {
-      background: #f1f5f9;
-      color: #dc2626;
-      border-color: #fca5a5;
+    .filter-group .form-control,
+    .filter-group .form-select {
+      font-size: 0.85rem;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      background: #fafcff;
+      padding: 6px 12px;
+    }
+    .filter-group .form-control:focus,
+    .filter-group .form-select:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 3px rgba(79,70,229,0.15);
     }
     .btn-group-price .btn {
-      font-size: 0.7rem; padding: 5px 12px; font-weight: 600;
-      border-color: #e2e8f0; background: white; color: #334155;
+      font-size: 0.7rem;
+      padding: 5px 12px;
+      font-weight: 600;
+      border-color: #e2e8f0;
+      background: white;
+      color: #334155;
     }
     .btn-group-price .btn-check:checked + .btn {
-      background: #4f46e5; color: white; border-color: #4f46e5;
+      background: #4f46e5;
+      color: white;
+      border-color: #4f46e5;
     }
-    .btn-group-price .btn-check:not(:checked) + .btn:hover { background: #f1f5f9; }
+    .btn-group-price .btn-check:not(:checked) + .btn:hover {
+      background: #f1f5f9;
+    }
     .category-dropdown-btn {
-      font-size: 0.85rem; background: #fafcff; border: 1px solid #e2e8f0;
-      border-radius: 8px; padding: 6px 12px; width: 100%;
-      text-align: left; display: flex; justify-content: space-between;
-      align-items: center; color: #1e293b;
+      font-size: 0.85rem;
+      background: #fafcff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 6px 12px;
+      width: 100%;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #1e293b;
     }
-    .category-dropdown-btn:hover { background: #f1f5f9; }
+    .category-dropdown-btn:hover {
+      background: #f1f5f9;
+    }
     .dropdown-menu-cat {
-      max-height: 360px; overflow-y: auto; min-width: 260px;
-      padding: 8px 4px; border-radius: 12px; border: 1px solid #e9edf4;
+      max-height: 360px;
+      overflow-y: auto;
+      min-width: 260px;
+      padding: 8px 4px;
+      border-radius: 12px;
+      border: 1px solid #e9edf4;
       box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-      z-index: 10000 !important;
     }
     .cat-parent {
-      font-weight: 600; font-size: 0.75rem; padding: 6px 12px 2px 12px;
-      color: #0f172a; background: #f8fafc; border-radius: 6px; margin-top: 4px;
+      font-weight: 600;
+      font-size: 0.75rem;
+      padding: 6px 12px 2px 12px;
+      color: #0f172a;
+      background: #f8fafc;
+      border-radius: 6px;
+      margin-top: 4px;
     }
-    .cat-child { padding-left: 28px; font-size: 0.8rem; }
-    .cat-child .form-check-input { margin-top: 0.2rem; }
-    .cat-child .form-check-label { font-weight: 400; color: #334155; }
+    .cat-child {
+      padding-left: 28px;
+      font-size: 0.8rem;
+    }
+    .cat-child .form-check-input {
+      margin-top: 0.2rem;
+    }
+    .cat-child .form-check-label {
+      font-weight: 400;
+      color: #334155;
+    }
 
-    /* КАРТКИ */
+    /* --- КАРТКИ --- */
     .catalog-grid {
-      padding: 20px; max-width: 1400px; margin: 0 auto;
-      position: relative; z-index: 1;
+      padding: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
     .product-card {
-      border: none; border-radius: 14px;
+      border: none;
+      border-radius: 14px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      height: 100%; display: flex; flex-direction: column;
-      background: white; border: 1px solid #f1f4fa;
-      cursor: pointer; position: relative; z-index: 1;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, z-index 0s;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border: 1px solid #f1f4fa;
+      position: relative;
     }
     .product-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 28px rgba(0,0,0,0.08);
-      border-color: #4f46e5;
+      border-color: #e2e8f0;
     }
-    .card-inner-content {
-      display: flex; flex-direction: column;
-      flex: 1 1 auto;
-    }
-    .card-disabled .card-inner-content {
-      opacity: 0.55;
-      filter: grayscale(0.4);
-      pointer-events: none;
-    }
-    .product-card:has(.dropdown-menu.show) { z-index: 9998 !important; }
-    .product-card .dropdown-menu {
-      z-index: 9998 !important; min-width: 180px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      border: 1px solid #e9edf4; border-radius: 10px; padding: 6px 0;
-    }
-    .product-card .dropdown-item { font-size: 0.8rem; padding: 6px 16px; color: #1e293b; }
-    .product-card .dropdown-item:hover { background: #f1f5f9; color: #0f172a; }
     .product-img {
-      height: 160px; object-fit: contain;
-      padding: 12px; background: #ffffff;
+      height: 160px;
+      object-fit: contain;
+      padding: 12px;
+      background: #fafcff;
       border-bottom: 1px solid #f1f4fa;
       border-radius: 14px 14px 0 0;
-      display: block; width: 100%;
     }
     .product-cat {
-      font-size: 0.6rem; text-transform: uppercase;
-      letter-spacing: 0.5px; color: #94a3b8; font-weight: 600;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #94a3b8;
+      font-weight: 600;
     }
-    .product-title-wrapper { position: relative; margin-bottom: 6px; }
+    
+    /* ===== ВИПРАВЛЕННЯ ДЛЯ ДОВГИХ НАЗВ ===== */
+    .product-title-wrapper {
+      position: relative;
+      margin-bottom: 6px;
+    }
     .product-title {
-      font-size: 0.85rem; line-height: 1.3; color: #0f172a; font-weight: 500;
-      max-height: 2.6em; overflow: hidden;
+      font-size: 0.85rem;
+      line-height: 1.3;
+      color: #0f172a;
+      font-weight: 500;
+      
+      /* Обмеження висоти до 2 рядків */
+      max-height: 2.6em;
+      overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
+      
+     
     }
-    .product-title:hover { color: #4f46e5; }
+    .product-title:hover {
+      color: #4f46e5;
+    }
+    
+    /* Стиль для повної назви при наведенні (якщо текст обрізаний) */
     .product-title[data-fulltext]::after {
       content: attr(data-fulltext);
-      position: absolute; left: 0; top: 100%;
-      background: white; padding: 8px 12px; border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15); border: 1px solid #e9edf4;
-      font-size: 0.85rem; font-weight: 400; color: #0f172a;
-      white-space: normal; max-width: 300px;
-      z-index: 10000; opacity: 0; pointer-events: none;
-      transform: translateY(4px); transition: opacity 0.2s, transform 0.5s;
-      line-height: 1.4; word-wrap: break-word;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      background: white;
+      padding: 8px 12px;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      border: 1px solid #e9edf4;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #0f172a;
+      white-space: normal;
+      max-width: 300px;
+      z-index: 10000;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(4px);
+      transition: opacity 0.2s, transform 0.2s;
+      line-height: 1.4;
+      word-wrap: break-word;
     }
     .product-title[data-fulltext]:hover::after {
-      opacity: 1; transform: translateY(-35px); pointer-events: auto;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
+    
+    /* Альтернативний варіант - якщо хочете завжди показувати повну назву */
+    .product-title-expanded {
+      font-size: 0.85rem;
+      line-height: 1.3;
+      margin-bottom: 6px;
+      color: #0f172a;
+      font-weight: 500;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+    
+    /* ===== КІНЕЦЬ ВИПРАВЛЕННЯ ===== */
+    
     .product-code {
-      color: #4f46e5; font-weight: 600; font-size: 0.75rem; margin-bottom: 6px;
-      display: flex; align-items: center; gap: 6px;
+      color: #4f46e5;
+      font-weight: 600;
+      font-size: 0.75rem;
+      margin-bottom: 6px;
     }
-    .icon-btn {
-      background: #f1f5f9; border: 1px solid #e2e8f0; color: #4f46e5;
-      width: 20px; height: 20px; border-radius: 6px; flex-shrink: 0;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 0.65rem; cursor: pointer; transition: all 0.15s; padding: 0;
+    .price-main {
+      font-size: 1.2rem;
+      color: #0d6efd;
+      font-weight: 700;
+      line-height: 1.1;
     }
-    .icon-btn:hover { background: #4f46e5; color: white; border-color: #4f46e5; }
-    .icon-btn.icon-btn-added { background: #16a34a; color: white; border-color: #16a34a; }
-    .price-main { font-size: 1.2rem; color: #0d6efd; font-weight: 700; line-height: 1.1; }
-    .price-vat { font-size: 0.7rem; color: #64748b; }
+    .price-vat {
+      font-size: 0.7rem;
+      color: #64748b;
+    }
+    .card-disabled {
+      opacity: 0.55;
+      filter: grayscale(0.4);
+    }
     .no-drop-alert {
-      background: #dc2626; color: #ffffff;
-      border: 2px solid #dc2626; border-radius: 8px;
-      font-size: 0.75rem; padding: 6px 10px;
-      text-align: center; font-weight: 700;
-      cursor: pointer; transition: all 0.2s ease;
-      letter-spacing: 0.3px;
-      box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
-      margin-top: 0.5rem;
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      text-align: center;
+      font-weight: 700;
     }
-    .no-drop-alert:hover {
-      background: #b91c1c; border-color: #b91c1c;
-      color: #ffffff; transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+    .btn-action {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 8px;
     }
-    .btn-action { font-size: 0.7rem; font-weight: 600; padding: 5px 10px; border-radius: 8px; pointer-events: auto; }
-    .btn-primary { background: #4f46e5; border-color: #4f46e5; }
-    .btn-primary:hover { background: #4338ca; border-color: #4338ca; }
-    .btn-outline-primary { color: #4f46e5; border-color: #4f46e5; }
-    .btn-outline-primary:hover { background: #4f46e5; color: white; }
+    .btn-primary {
+      background: #4f46e5;
+      border-color: #4f46e5;
+    }
+    .btn-primary:hover {
+      background: #4338ca;
+      border-color: #4338ca;
+    }
+    .btn-outline-primary {
+      color: #4f46e5;
+      border-color: #4f46e5;
+    }
+    .btn-outline-primary:hover {
+      background: #4f46e5;
+      color: white;
+    }
+    
+    /* Важливо: щоб випадаючі списки були ПОВЕРХ усіх карток */
+    .product-card:has(.dropdown-menu.show) {
+      z-index: 9999 !important;
+    }
+    .product-card .dropdown-menu {
+      z-index: 10000 !important;
+      min-width: 180px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border: 1px solid #e9edf4;
+      border-radius: 10px;
+      padding: 6px 0;
+    }
+    .product-card .dropdown-item {
+      font-size: 0.8rem;
+      padding: 6px 16px;
+      color: #1e293b;
+    }
+    .product-card .dropdown-item:hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
 
-    /* МОДАЛЬНІ ВІКНА */
-    .modal { z-index: 10555 !important; }
-    .modal-backdrop { z-index: 10550 !important; }
-    .modal-quickview .modal-dialog { max-width: 800px; margin: 1.75rem auto; }
-    .modal-quickview .modal-content {
-      border-radius: 16px; border: none; box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-    }
-    .modal-quickview .modal-body { padding: 30px; }
-    .modal-quickview .modal-header {
-      border-bottom: none; padding: 16px 24px 0 24px;
-    }
-    .modal-quickview .modal-header .btn-close {
-      background: #f1f5f9; border-radius: 50%; padding: 10px; opacity: 1;
-      width: 40px; height: 40px;
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e");
-      background-size: 16px; background-position: center; background-repeat: no-repeat;
-    }
-    .modal-quickview .modal-header .btn-close:hover { background-color: #e2e8f0; }
-    .modal-quickview .product-img-modal {
-      width: 100%; max-height: 350px; object-fit: contain;
-      background: #fafcff; border-radius: 12px; padding: 16px;
-    }
-    .modal-quickview .product-title-modal {
-      font-size: 1.3rem; font-weight: 700; color: #0f172a; margin-bottom: 8px; white-space: pre-line;
-    }
-    .modal-quickview .product-code-modal {
-      color: #4f46e5; font-weight: 600; font-size: 0.85rem; margin-bottom: 12px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .modal-quickview .product-cat-modal {
-      font-size: 0.75rem; color: #94a3b8; text-transform: uppercase;
-      letter-spacing: 0.5px; margin-bottom: 16px;
-    }
-    .modal-quickview .price-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;
-    }
-    .modal-quickview .price-box {
-      background: #f8fafc; padding: 12px 16px; border-radius: 10px; border: 1px solid #f1f4fa;
-    }
-    .modal-quickview .price-box .label {
-      font-size: 0.6rem; text-transform: uppercase; color: #94a3b8; font-weight: 600; letter-spacing: 0.3px;
-    }
-    .modal-quickview .price-box .amount { font-size: 1.3rem; font-weight: 700; color: #0f172a; }
-    .modal-quickview .price-box .vat { font-size: 0.7rem; color: #64748b; }
-    .modal-quickview .price-box.highlight { border-color: #4f46e5; background: #f0f0ff; }
-    .modal-quickview .price-box.highlight .amount { color: #4f46e5; }
-    .modal-quickview .links-section { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
-    .modal-quickview .links-section .btn { font-size: 0.8rem; padding: 6px 16px; border-radius: 8px; }
-
-    /* Контакти */
-    .modal-contacts .modal-dialog { max-width: 650px; }
-    .modal-contacts .modal-content {
-      border-radius: 16px; border: none; box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-      background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-    }
-    .modal-contacts .modal-header {
-      border-bottom: 2px solid #4f46e5;
-      background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
-      color: white; border-radius: 16px 16px 0 0; padding: 20px 24px;
-    }
-    .modal-contacts .modal-title { font-weight: 700; font-size: 1.2rem; display: flex; align-items: center; gap: 8px; }
-    .modal-contacts .btn-close { filter: brightness(0) invert(1); opacity: 0.8; }
-    .modal-contacts .btn-close:hover { opacity: 1; }
-    .modal-contacts .modal-body { padding: 24px; }
-    .managers-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .manager-card {
-      background: white; border-radius: 12px; padding: 14px 16px;
-      margin-bottom: 0; border: 1px solid #e9edf4;
-      transition: all 0.2s ease; display: flex; align-items: center; gap: 12px;
-    }
-    .manager-card:hover {
-      border-color: #4f46e5; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.1);
-      transform: translateY(-2px);
-    }
-    .manager-avatar {
-      width: 50px; height: 50px; border-radius: 50%;
-      background: linear-gradient(135deg, #4f46e5, #6366f1);
-      color: white; display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 1.2rem; flex-shrink: 0;
-      overflow: hidden; position: relative;
-    }
-    .manager-avatar img {
-      width: 100%; height: 100%; object-fit: cover;
-      position: absolute; top: 0; left: 0;
-    }
-    .manager-avatar .avatar-initials {
-      position: absolute; top: 0; left: 0;
-      width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      z-index: 1;
-    }
-    .manager-avatar:has(img) .avatar-initials { display: none; }
-    .manager-info { flex: 1; min-width: 0; }
-    .manager-name {
-      font-weight: 600; font-size: 0.85rem; color: #0f172a;
-      margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .manager-contact {
-      font-size: 0.7rem; color: #64748b; margin-bottom: 1px;
-      display: flex; align-items: center; gap: 4px;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .manager-contact a { color: #4f46e5; text-decoration: none; font-weight: 500; }
-    .manager-contact a:hover { text-decoration: underline; color: #4338ca; }
-    .quick-actions { display: flex; gap: 6px; margin-top: 6px; }
-    .quick-actions .btn { font-size: 0.65rem; padding: 3px 8px; border-radius: 6px; }
-    .product-info-alert {
-      background: #fef3c7; border: 1px solid #fcd34d; border-radius: 8px;
-      padding: 12px; margin-bottom: 16px; font-size: 0.85rem; color: #92400e;
-    }
-    .product-info-alert:empty { display: none; }
-
+    /* --- УМОВИ --- */
     #conditions-box {
-      background: white; padding: 20px 24px; border-radius: 14px;
-      margin: 20px 20px 30px 20px; border: 1px solid #e9edf4;
-      max-width: 1400px; margin-left: auto; margin-right: auto;
-      position: relative; z-index: 1;
+      background: white;
+      padding: 20px 24px;
+      border-radius: 14px;
+      margin: 20px 20px 30px 20px;
+      border: 1px solid #e9edf4;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    #conditions-box h4 { font-size: 1rem; font-weight: 700; color: #0f172a; }
-    #conditionsText { font-size: 0.9rem; color: #334155; line-height: 1.6; }
-    .product-counter { font-size: 0.8rem; color: #64748b; padding: 8px 0 0 4px; font-weight: 500; }
-    .product-counter span { color: #0f172a; font-weight: 700; }
+    #conditions-box h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    #conditionsText {
+      font-size: 0.9rem;
+      color: #334155;
+      line-height: 1.6;
+    }
 
-    .loader-container { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 50px 20px; }
-    .walking-man { width: 60px; height: 60px; animation: walk 2.2s infinite ease-in-out; }
+    /* --- ЛІЧИЛЬНИК ТОВАРІВ --- */
+    .product-counter {
+      font-size: 0.8rem;
+      color: #64748b;
+      padding: 8px 0 0 4px;
+      font-weight: 500;
+    }
+    .product-counter span {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    /* --- ЛОАДЕР --- */
+    .loader-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px;
+    }
+    .walking-man {
+      width: 60px;
+      height: 60px;
+      animation: walk 2.2s infinite ease-in-out;
+    }
     @keyframes walk {
       0% { transform: translateX(-30px) scale(0.9); opacity: 0; }
       20% { opacity: 1; transform: translateX(-10px) scale(1); }
       80% { opacity: 1; transform: translateX(10px) scale(1); }
       100% { transform: translateX(30px) scale(0.9); opacity: 0; }
     }
-    .loader-text { font-size: 0.85rem; font-weight: 600; color: #4f46e5; margin-top: 12px; }
-
-    .empty-state {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 60px 20px; text-align: center; color: #64748b;
-    }
-    .empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 12px; opacity: 0.6; }
-    .empty-state .empty-title { font-size: 1rem; font-weight: 600; color: #0f172a; margin-bottom: 6px; }
-    .empty-state .empty-text { font-size: 0.85rem; }
-
-    /* ПЛАВАЮЧА КНОПКА СПИСКУ ЗАПИТУ */
-    .inquiry-float-btn {
-      position: fixed; right: 20px; bottom: 20px; z-index: 9500;
-      background: #4f46e5; color: white; border: none; border-radius: 50px;
-      padding: 12px 18px; font-weight: 700; font-size: 0.85rem;
-      box-shadow: 0 8px 24px rgba(79,70,229,0.35); cursor: pointer;
-      display: flex; align-items: center; gap: 8px; transition: transform 0.2s;
-    }
-    .inquiry-float-btn:hover { transform: translateY(-2px); }
-    .inquiry-float-btn.hidden { display: none; }
-    .inquiry-float-btn .count-badge {
-      background: white; color: #4f46e5; border-radius: 50%;
-      min-width: 20px; height: 20px; display: flex; align-items: center;
-      justify-content: center; font-size: 0.7rem; font-weight: 800; padding: 0 4px;
-    }
-
-    /* МОДАЛКА СПИСКУ ЗАПИТУ */
-    .modal-inquiry .modal-dialog { max-width: 550px; }
-    .modal-inquiry .modal-content {
-      border-radius: 16px; border: none; box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-    }
-    .modal-inquiry .modal-header {
-      border-bottom: 1px solid #e9edf4; padding: 20px 24px;
-    }
-    .modal-inquiry .modal-title { font-weight: 700; font-size: 1.1rem; color: #0f172a; }
-    .modal-inquiry .modal-body { padding: 20px 24px; max-height: 70vh; overflow-y: auto; }
-    .inquiry-item {
-      display: flex; align-items: center; gap: 10px; padding: 10px 0;
-      border-bottom: 1px solid #f1f4fa;
-    }
-    .inquiry-item:last-child { border-bottom: none; }
-    .inquiry-item-info { flex: 1; min-width: 0; }
-    .inquiry-item-title {
-      font-size: 0.85rem; font-weight: 600; color: #0f172a;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    }
-    .inquiry-item-sku { font-size: 0.7rem; color: #64748b; }
-    .inquiry-qty {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-    .inquiry-qty-input {
-      width: 60px;
-      height: 28px;
-      text-align: center;
-      border: 1px solid #e2e8f0;
-      border-radius: 6px;
+    .loader-text {
       font-size: 0.85rem;
       font-weight: 600;
-      padding: 2px 4px;
-      background: white;
-      color: #0f172a;
+      color: #4f46e5;
+      margin-top: 12px;
     }
-    .inquiry-qty-input:focus {
-      border-color: #4f46e5;
-      box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-      outline: none;
-    }
-    .inquiry-remove {
-      background: none; border: none; color: #dc2626; cursor: pointer;
-      font-size: 1.1rem; padding: 4px; flex-shrink: 0; line-height: 1;
-    }
-    .inquiry-empty { text-align: center; padding: 30px 10px; color: #64748b; font-size: 0.85rem; }
-    .inquiry-footer {
-      border-top: 1px solid #e9edf4; padding: 16px 24px; display: flex;
-      flex-direction: column; gap: 10px;
-    }
-    .inquiry-footer label {
-      font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.4px; color: #64748b; margin-bottom: 4px; display: block;
-    }
-    .inquiry-footer-actions { display: flex; gap: 8px; }
-    .inquiry-footer-actions .btn { font-size: 0.8rem; border-radius: 8px; }
 
-    /* TOAST-ПОВІДОМЛЕННЯ */
-    .toast-message {
-      position: fixed; bottom: 24px; left: 50%; z-index: 11000;
-      transform: translateX(-50%) translateY(20px);
-      background: #0f172a; color: white; padding: 10px 20px; border-radius: 8px;
-      font-size: 0.85rem; font-weight: 500; box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-      opacity: 0; transition: opacity 0.25s, transform 0.25s; pointer-events: none;
-      max-width: 90vw; text-align: center;
-    }
-    .toast-message.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-    /* ЛОГІН */
-    #login-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #1a1a1a;
-      z-index: 999999;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: sans-serif;
-      color: #fff;
-    }
-    .login-box {
-      background: #2b2b2b;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-      text-align: center;
-      width: 400px;
-    }
-    .login-box h2 { margin-bottom: 20px; font-size: 20px; }
-    .login-box input {
-      width: 100%; padding: 10px; margin-bottom: 15px;
-      border: 1px solid #444; background: #3c3c3c;
-      color: #fff; border-radius: 4px; box-sizing: border-box;
-    }
-    .login-box button {
-      width: 100%; padding: 10px;
-      background: #79C142; border: none;
-      color: #fff; font-weight: bold;
-      border-radius: 4px; cursor: pointer;
-      transition: background 0.2s;
-    }
-    .login-box button:hover { background: #64a035; }
-
-    /* АДАПТИВ */
+    /* --- АДАПТИВ --- */
     @media (max-width: 576px) {
       .top-header { flex-direction: column; align-items: stretch; text-align: center; }
       .header-address { text-align: center; }
-      .header-right { justify-content: center; }
       .filter-section { flex-direction: column; align-items: stretch; }
-      .filter-group { flex: 1 1 auto !important; }
+      .filter-group { flex: 1 1 auto; }
       .sticky-filter { padding: 10px 12px; }
       .catalog-grid { padding: 12px; }
       .product-img { height: 130px; }
-      .modal-quickview .price-grid { grid-template-columns: 1fr; }
-      .modal-quickview .modal-body { padding: 16px; }
-      .manager-card { flex-direction: column; text-align: center; }
-      .manager-avatar { margin: 0 auto; }
-      .managers-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<div id="login-overlay">
-  <div class="login-box">
-    <h2>Wejście do katalogu produktów</h2>
-    <input type="password" id="site-password" placeholder="Wprowadź hasło" onkeydown="if(event.key === 'Enter') checkPassword()">
-    <button onclick="checkPassword()">Zaloguj się</button>
-  </div>
-</div>
-
 <div class="top-header">
   <div class="logo-area">
     <img src="logo.png" alt="Logo" class="logo-img" onerror="this.style.display='none'">
   </div>
-  <div class="header-right">
-    <div class="header-address">
-      <strong>Adres:</strong> ul. Armii Krajowej 74, 58-130 Żarów<br>
-      <span style="font-size:0.75rem; color:#94a3b8;">📞 74 857 03 39 | ✉ sklep@drabiny.info</span>
-    </div>
-    <button class="header-contact-btn" onclick="openContactsModal()" title="Skontaktuj się z menedżerem">
-      📞 Kontakt
-    </button>
+  <div class="header-address">
+    <strong>Adres:</strong> ul. Armii Krajowej 74, 58-130 Żarów<br>
+    <span style="font-size:0.75rem; color:#94a3b8;">📞 74 857 03 39 | ✉ sklep@drabiny.info</span>
   </div>
 </div>
 
@@ -605,33 +454,15 @@
       </div>
     </div>
 
-    <div class="filter-group filter-group-search">
+    <div class="filter-group" style="flex: 2 1 200px;">
       <label>Szukaj</label>
-      <input type="text" id="searchInput" class="form-control" placeholder="Nazwa lub SKU..." onkeyup="debouncedApplyFilters()">
+      <input type="text" id="searchInput" class="form-control" placeholder="Nazwa lub SKU..." onkeyup="applyFilters()">
     </div>
-
-    <div class="filter-group">
-      <label>Sortowanie</label>
-      <select id="sortSelect" class="form-select" onchange="applyFilters()">
-        <option value="default">Domyślnie</option>
-        <option value="price_asc">Cena: rosnąco</option>
-        <option value="price_desc">Cena: malejąco</option>
-        <option value="name_asc">Nazwa: A-Z</option>
-        <option value="name_desc">Nazwa: Z-A</option>
-      </select>
-    </div>
-
-    <button class="btn-reset-filters" onclick="resetFilters()" title="Wyczyść wszystkie filtry">
-      ✕ Wyczyść
-    </button>
-
-    <button class="btn-managers" onclick="openContactsModal()" title="Zobacz kontakt do menedżerów">
-      📞 Menedżerowie
-    </button>
   </div>
 </div>
 
 <div class="catalog-grid">
+  <!-- Лічильник товарів -->
   <div class="product-counter" id="productCounter">
     Znaleziono: <span id="productCount">0</span> produktów
   </div>
@@ -657,158 +488,21 @@
   <div id="conditionsText"></div>
 </div>
 
-<!-- Модальне вікно швидкого перегляду -->
-<div class="modal fade modal-quickview" id="quickViewModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="quickViewContent"></div>
-    </div>
-  </div>
-</div>
-
-<!-- Модальне вікно контактів менеджерів -->
-<div class="modal fade modal-contacts" id="contactsModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">📞 Skontaktuj się z nami</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="product-info-alert" id="contactProductInfo"></div>
-        <h6 class="fw-bold mb-3" style="color: #0f172a;">👥 Nasi menedżerowie:</h6>
-        <div class="managers-grid">
-          <div class="manager-card">
-            <div class="manager-avatar"><img src="DamianHorbacz.png" alt="Damian Horbacz"></div>
-            <div class="manager-info">
-              <div class="manager-name">Damian Horbacz</div>
-              <div class="manager-contact">📱 <a href="tel:+48662885445">+48 662 885 445</a></div>
-              <div class="manager-contact">✉️ <a href="mailto:handel1@drabiny.info">handel1@drabiny.info</a></div>
-              <div class="quick-actions">
-                <a href="tel:+48662885445" class="btn btn-primary btn-sm">📞 Zadzwoń</a>
-                <a href="mailto:handel1@drabiny.info" class="btn btn-outline-primary btn-sm">✉️ Email</a>
-              </div>
-            </div>
-          </div>
-          <div class="manager-card">
-            <div class="manager-avatar"><span class="avatar-initials">JD</span></div>
-            <div class="manager-info">
-              <div class="manager-name">Jakub Długaszek</div>
-              <div class="manager-contact">📱 <a href="tel:+48662885444">+48 662 885 444</a></div>
-              <div class="manager-contact">✉️ <a href="mailto:handel3@drabiny.info">handel3@drabiny.info</a></div>
-              <div class="quick-actions">
-                <a href="tel:+48662885444" class="btn btn-primary btn-sm">📞 Zadzwoń</a>
-                <a href="mailto:handel3@drabiny.info" class="btn btn-outline-primary btn-sm">✉️ Email</a>
-              </div>
-            </div>
-          </div>
-          <div class="manager-card">
-            <div class="manager-avatar"><span class="avatar-initials">MD</span></div>
-            <div class="manager-info">
-              <div class="manager-name">Marcin Dobrowolski</div>
-              <div class="manager-contact">📱 <a href="tel:+48608115304">+48 608 115 304</a></div>
-              <div class="manager-contact">✉️ <a href="mailto:handel5@drabiny.info">handel5@drabiny.info</a></div>
-              <div class="quick-actions">
-                <a href="tel:+48608115304" class="btn btn-primary btn-sm">📞 Zadzwoń</a>
-                <a href="mailto:handel5@drabiny.info" class="btn btn-outline-primary btn-sm">✉️ Email</a>
-              </div>
-            </div>
-          </div>
-          <div class="manager-card">
-            <div class="manager-avatar"><span class="avatar-initials">SI</span></div>
-            <div class="manager-info">
-              <div class="manager-name">Szymon Ilczyński</div>
-              <div class="manager-contact">📱 <a href="tel:+48574133788">+48 574 133 788</a></div>
-              <div class="manager-contact">✉️ <a href="mailto:handel6@drabiny.info">handel6@drabiny.info</a></div>
-              <div class="quick-actions">
-                <a href="tel:+48574133788" class="btn btn-primary btn-sm">📞 Zadzwoń</a>
-                <a href="mailto:handel6@drabiny.info" class="btn btn-outline-primary btn-sm">✉️ Email</a>
-              </div>
-            </div>
-          </div>
-          <div class="manager-card">
-            <div class="manager-avatar"><img src="AdamJanus.png" alt="Adam Janus"></div>
-            <div class="manager-info">
-              <div class="manager-name">Adam Janus</div>
-              <div class="manager-contact">📱 <a href="tel:+48780139987">+48 780 139 987</a></div>
-              <div class="manager-contact">✉️ <a href="mailto:handel@drabiny.info">handel@drabiny.info</a></div>
-              <div class="quick-actions">
-                <a href="tel:+48780139987" class="btn btn-primary btn-sm">📞 Zadzwoń</a>
-                <a href="mailto:handel@drabiny.info" class="btn btn-outline-primary btn-sm">✉️ Email</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="text-center mt-3">
-          <small class="text-muted">Lub napisz na ogólny adres:</small><br>
-          <a href="mailto:sklep@drabiny.info" class="fw-bold">✉️ sklep@drabiny.info</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Плаваюча кнопка списку запиту -->
-<button class="inquiry-float-btn hidden" id="inquiryFloatBtn" onclick="openInquiryModal()">
-  📋 Lista <span class="count-badge" id="inquiryCount">0</span>
-</button>
-
-<!-- Модальне вікно списку запиту -->
-<div class="modal fade modal-inquiry" id="inquiryModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">📋 Lista zapytania</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body" id="inquiryItemsList"></div>
-      <div class="inquiry-footer">
-        <div>
-          <label>Wyślij do</label>
-          <select id="inquiryManagerSelect" class="form-select form-select-sm"></select>
-        </div>
-        <div class="inquiry-footer-actions">
-          <button class="btn btn-outline-secondary btn-sm" onclick="clearInquiryList()">🗑️ Wyczyść listę</button>
-          <button class="btn btn-primary btn-sm flex-grow-1" onclick="sendInquiryEmail()">✉️ Wyślij e-mailem</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Контейнер для toast-повідомлень -->
-<div id="toastMessage" class="toast-message"></div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
   let allProducts = [];
-  let quickViewModal = null;
-  let contactsModal = null;
-  let inquiryModal = null;
 
-  const MANAGERS = [
-    { name: 'Ogólny adres (sklep@drabiny.info)', email: 'sklep@drabiny.info' },
-    { name: 'Damian Horbacz', email: 'handel1@drabiny.info' },
-    { name: 'Jakub Długaszek', email: 'handel3@drabiny.info' },
-    { name: 'Marcin Dobrowolski', email: 'handel5@drabiny.info' },
-    { name: 'Szymon Ilczyński', email: 'handel6@drabiny.info' },
-    { name: 'Adam Janus', email: 'handel@drabiny.info' }
-  ];
+  window.onload = () => {
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbyUeaVAhZaS5cCbtrgDCrpKvWH-ubcaaENNILoJzSBAZwDKX7RVBxDQscayVInbufsw/exec?get=data";
 
-  const INQUIRY_STORAGE_KEY = 'inquiryList';
-  let inquiryList = [];
-
-  function loadProducts() {
-    fetch('products.json')
+    fetch(webAppUrl)
       .then(response => {
-        if (!response.ok) throw new Error("Не вдалося завантажити products.json");
+        if (!response.ok) throw new Error("Помилка мережі");
         return response.json();
       })
       .then(data => {
-        allProducts = Array.isArray(data) ? data : (data.items || []);
+        if (data.error) throw new Error(data.error);
+        allProducts = data.items;
         if (data.conditions) {
           document.getElementById('conditionsText').innerHTML = data.conditions.replace(/\n/g, '<br>');
           document.getElementById('conditions-box').style.display = 'block';
@@ -819,24 +513,23 @@
         updateCategoryCount();
         updateProductCounter(allProducts.length);
         window.addEventListener('scroll', handleScrollShadow);
-        quickViewModal = new bootstrap.Modal(document.getElementById('quickViewModal'));
-        contactsModal = new bootstrap.Modal(document.getElementById('contactsModal'));
-        inquiryModal = new bootstrap.Modal(document.getElementById('inquiryModal'));
-        populateManagerSelect();
-        loadInquiryList();
       })
       .catch(error => {
         console.error("Помилка завантаження даних:", error);
         const loader = document.getElementById('loader');
         if (loader) {
-          loader.innerHTML = `<p class="text-danger text-center">⚠️ Błąd podczas wczytywania katalogu. Sprawdź plik products.json lub odśwież stronę.</p>`;
+          loader.innerHTML = `<p class="text-danger text-center">⚠️ Błąd podczas wczytywania katalogu. Spróbuj odświeżyć stronę.</p>`;
         }
       });
-  }
+  };
 
   function handleScrollShadow() {
     const el = document.getElementById('stickyFilter');
-    el.classList.toggle('scrolled', window.scrollY > 10);
+    if (window.scrollY > 10) {
+      el.classList.add('scrolled');
+    } else {
+      el.classList.remove('scrolled');
+    }
   }
 
   function renderCategoryTree(data) {
@@ -857,204 +550,122 @@
       });
     });
     container.innerHTML = html;
-    document.querySelectorAll('.cat-check').forEach(cb => cb.addEventListener('change', () => { updateCategoryCount(); applyFilters(); }));
+    document.querySelectorAll('.cat-check').forEach(cb => {
+      cb.addEventListener('change', () => {
+        updateCategoryCount();
+        applyFilters();
+      });
+    });
   }
 
   function updateCategoryCount() {
     const checked = document.querySelectorAll('.cat-check:checked').length;
     document.getElementById('catCount').textContent = checked;
-    document.getElementById('selectedCatsLabel').textContent = checked === 0 ? 'Wybór kategorii' : `Wybrano ${checked} kategorii`;
+    const label = document.getElementById('selectedCatsLabel');
+    if (checked === 0) {
+      label.textContent = 'Wybór kategorii';
+    } else {
+      label.textContent = `Wybrano ${checked} kategorii`;
+    }
   }
 
   function updateProductCounter(count) {
     document.getElementById('productCount').textContent = count;
   }
 
-  function parsePrice(val) {
-    if (!val && val !== 0) return 0;
-    if (typeof val === 'string') {
-      let s = val.replace(/\s/g, '').replace(',', '.');
-      let n = parseFloat(s);
-      return isNaN(n) ? 0 : n;
-    }
-    return typeof val === 'number' ? val : 0;
-  }
-
-  function formatPrice(val) {
-    return val.toLocaleString('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  }
-
-  function escapeJSString(str) {
-    if (!str) return '';
-    return str.replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t');
-  }
-
-  function openQuickView(product) {
-    if (!product) return;
-    const content = document.getElementById('quickViewContent');
-    const pLocal = parsePrice(product.price);
-    const vLocal = parsePrice(product.vat);
-    const pDrop = parsePrice(product.priceDrop);
-    const vDrop = parsePrice(product.vatDrop);
-    const pDropship = parsePrice(product.priceDropshipping);
-    const vDropship = parsePrice(product.vatDropshipping);
-    const isDropMode = document.getElementById('p_drop').checked;
-    const isDropshippingMode = document.getElementById('p_dropshipping').checked;
-    let mainPrice, mainVat;
-    if (isDropshippingMode) { mainPrice = pDropship; mainVat = vDropship; }
-    else if (isDropMode) { mainPrice = pDrop; mainVat = vDrop; }
-    else { mainPrice = pLocal; mainVat = vLocal; }
-    const isUnavailable = (isDropMode || isDropshippingMode) && mainPrice === 0;
-
-    let linksHtml = '';
-    if (product.productUrls && product.productUrls.length > 0) {
-      linksHtml = product.productUrls.map(link => `<a href="${link.url}" target="_blank" class="btn btn-outline-primary btn-sm">${link.label}</a>`).join('');
-    }
-
-    let priceHtml = '';
-    if (isDropshippingMode) {
-      priceHtml = `
-        <div class="price-box highlight">
-          <div class="label">📦 Dropshipping</div>
-          <div class="amount">${isUnavailable ? '—' : formatPrice(pDropship) + ' zł'}</div>
-          <div class="vat">${isUnavailable ? '' : 'z VAT: ' + formatPrice(vDropship) + ' zł'}</div>
-        </div>`;
-    } else {
-      priceHtml = `
-        <div class="price-box ${!isDropMode ? 'highlight' : ''}">
-          <div class="label">🏪 Żarów</div>
-          <div class="amount">${formatPrice(pLocal)} zł</div>
-          <div class="vat">z VAT: ${formatPrice(vLocal)} zł</div>
-        </div>
-        <div class="price-box ${isDropMode ? 'highlight' : ''}">
-          <div class="label">🚚 Dostawa</div>
-          <div class="amount">${isDropMode && pDrop === 0 ? '—' : formatPrice(pDrop) + ' zł'}</div>
-          <div class="vat">${isDropMode && pDrop === 0 ? '' : 'z VAT: ' + formatPrice(vDrop) + ' zł'}</div>
-        </div>`;
-    }
-
-    content.innerHTML = `
-      <div class="row g-4">
-        <div class="col-md-5">
-          <img src="${product.photo}" class="product-img-modal">
-        </div>
-        <div class="col-md-7">
-          <div class="product-cat-modal">${product.category}</div>
-          <div class="product-title-modal">${product.title}</div>
-          <div class="product-code-modal">
-            SKU: ${product.code}
-            <button class="icon-btn" title="Kopiuj SKU" onclick="event.stopPropagation(); copySku('${escapeJSString(product.code)}', this)">📋</button>
-          </div>
-          <div class="price-grid">${priceHtml}</div>
-          <button class="btn btn-outline-primary btn-sm w-100 mb-2" onclick="event.stopPropagation(); addToInquiry('${escapeJSString(product.code)}', '${escapeJSString(product.title)}')">➕ Dodaj do listy zapytania</button>
-          ${isUnavailable ? `<div class="no-drop-alert mt-2" onclick="event.stopPropagation(); openContactsModal('${escapeJSString(product.code)}', '${escapeJSString(product.title)}')">⚠️ Produkt niedostępny – kliknij, aby skontaktować się z menedżerem</div>` : ''}
-          ${linksHtml ? `<div class="links-section">${linksHtml}</div>` : ''}
-        </div>
-      </div>`;
-    quickViewModal.show();
-  }
-
-  function openContactsModal(productCode, productTitle) {
-    const productInfo = document.getElementById('contactProductInfo');
-    if (productCode && productTitle) {
-      productInfo.innerHTML = `<strong>Produkt:</strong> ${productTitle}<br><strong>SKU:</strong> ${productCode}<br><small>Zapytaj o dostępność i cenę tego produktu.</small>`;
-    } else {
-      productInfo.innerHTML = '';
-    }
-    contactsModal.show();
-  }
-
   function renderCards(items) {
     const container = document.getElementById('catalogContainer');
     const isDropMode = document.getElementById('p_drop').checked;
     const isDropshippingMode = document.getElementById('p_dropshipping').checked;
+
+    // Оновлюємо лічильник
     updateProductCounter(items.length);
 
-    if (items.length === 0) {
-      container.innerHTML = `
-        <div class="empty-state w-100">
-          <div class="empty-icon">🔍</div>
-          <div class="empty-title">Nic nie znaleziono</div>
-          <div class="empty-text">Spróbuj zmienić wyszukiwane hasło lub wybrane kategorie.</div>
-        </div>`;
-      return;
-    }
-
-    container.innerHTML = items.map((item) => {
+    container.innerHTML = items.map(item => {
       let pRaw, vRaw;
-      if (isDropshippingMode) { pRaw = item.priceDropshipping; vRaw = item.vatDropshipping; }
-      else if (isDropMode) { pRaw = item.priceDrop; vRaw = item.vatDrop; }
-      else { pRaw = item.price; vRaw = item.vat; }
-      const p = parsePrice(pRaw);
-      const v = parsePrice(vRaw);
-      const isUnavailable = (isDropMode || isDropshippingMode) && p === 0;
-      const priceFormatted = formatPrice(p);
-      const vatFormatted = formatPrice(v);
+      if (isDropMode) {
+        pRaw = item.priceDrop;
+        vRaw = item.vatDrop;
+      } else if (isDropshippingMode) {
+        pRaw = item.priceDropshipping;
+        vRaw = item.vatDropshipping;
+      } else {
+        pRaw = item.price;
+        vRaw = item.vat;
+      }
+
+      const isUnavailable = (isDropMode || isDropshippingMode) && (!pRaw || parseFloat(String(pRaw).replace(',','.')) === 0);
+
+      const parsePrice = (val) => {
+        if (!val) return 0;
+        let s = String(val).replace(/\s/g, '').replace(',', '.');
+        let n = parseFloat(s);
+        return isNaN(n) ? 0 : n;
+      };
+
+      let p = parsePrice(pRaw);
+      let v = parsePrice(vRaw);
+
+      const priceFormatted = p.toLocaleString('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      const vatFormatted = v.toLocaleString('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
       const links = item.productUrls || [];
       let actionHtml = '';
 
       if (isUnavailable) {
-        actionHtml = `<div class="no-drop-alert" onclick="event.stopPropagation(); openContactsModal('${escapeJSString(item.code)}', '${escapeJSString(item.title)}')">BRAK - Zapytaj menedżera</div>`;
+        actionHtml = `<div class="no-drop-alert mt-2">BRAK</div>`;
       } else if (links.length === 0) {
-        actionHtml = `<button class="btn btn-action btn-light w-100 mt-2 text-muted border" disabled>Brak danych</button>`;
+        actionHtml = `<button class="btn btn-action btn-light w-100 mt-2 text-muted border" disabled style="cursor: not-allowed;">Brak danych</button>`;
       } else if (links.length === 1) {
-        actionHtml = `<a href="${links[0].url}" target="_blank" class="btn btn-action btn-primary w-100 mt-2" onclick="event.stopPropagation();">${links[0].label}</a>`;
+        actionHtml = `<a href="${links[0].url}" target="_blank" class="btn btn-action btn-primary w-100 mt-2">${links[0].label}</a>`;
       } else if (links.length > 1) {
         actionHtml = `
-          <div class="dropdown mt-2" onclick="event.stopPropagation();">
-            <button class="btn btn-action btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown">Materiały</button>
-            <ul class="dropdown-menu">${links.map(l => `<li><a class="dropdown-item" href="${l.url}" target="_blank">${l.label}</a></li>`).join('')}</ul>
+          <div class="dropdown mt-2">
+            <button class="btn btn-action btn-primary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Materiały
+            </button>
+            <ul class="dropdown-menu">
+              ${links.map(l => `<li><a class="dropdown-item" href="${l.url}" target="_blank">${l.label}</a></li>`).join('')}
+            </ul>
           </div>`;
       }
 
-      const escapedCode = escapeJSString(item.code);
+      // Екрануємо назву для data-атрибута
       const escapedTitle = item.title.replace(/"/g, '&quot;');
 
       return `<div class="col">
-        <div class="card product-card ${isUnavailable ? 'card-disabled' : ''}" onclick="openQuickView(allProducts.find(p => p.code === '${escapedCode}'))">
-          <div class="card-inner-content">
-            <img src="${item.photo}" class="product-img" referrerpolicy="no-referrer" loading="lazy">
-            <div class="card-body d-flex flex-column">
-              <div class="product-cat">${item.category}</div>
-              <div class="product-title-wrapper">
-                <div class="product-title" data-fulltext="${escapedTitle}">${item.title}</div>
-              </div>
-              <div class="product-code">
-                SKU: ${item.code}
-                <button class="icon-btn" title="Kopiuj SKU" onclick="event.stopPropagation(); copySku('${escapedCode}', this)">📋</button>
-                <button class="icon-btn" title="Dodaj do listy zapytania" onclick="event.stopPropagation(); addToInquiry('${escapedCode}', '${escapeJSString(item.title)}')">➕</button>
-              </div>
-              <div class="mt-auto pt-2 border-top">
-                ${isUnavailable ? '<div class="text-center py-2">—</div>' : `
-                  <div class="price-main">${priceFormatted} <small style="font-size:0.65rem; font-weight:400;">zł</small></div>
-                  <div class="price-vat mb-1">z VAT: ${vatFormatted}</div>
-                `}
-                ${!isUnavailable ? actionHtml : ''}
+        <div class="card product-card ${isUnavailable ? 'card-disabled' : ''}">
+          <img src="${item.photo}" class="product-img" referrerpolicy="no-referrer" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22%3E%3Crect fill=%22%23f1f4fa%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%2394a3b8%22 font-size=%2214%22 font-family=%22Inter%22%3EBrak zdj%3C/text%3E%3C/svg%3E'">
+          <div class="card-body d-flex flex-column">
+            <div class="product-cat">${item.category}</div>
+            <div class="product-title-wrapper">
+              <div class="product-title" data-fulltext="${escapedTitle}">
+                ${item.title}
               </div>
             </div>
+            <div class="product-code">SKU: ${item.code}</div>
+            <div class="mt-auto pt-2 border-top">
+              ${isUnavailable ? '<div class="text-center py-2">—</div>' : `
+                <div class="price-main">${priceFormatted} <small style="font-size:0.65rem; font-weight:400;">zł</small></div>
+                <div class="price-vat mb-1">z VAT: ${vatFormatted}</div>
+              `}
+              ${actionHtml}
+            </div>
           </div>
-          ${isUnavailable ? actionHtml : ''}
         </div>
       </div>`;
     }).join('');
-
-    document.querySelectorAll('.dropdown-toggle').forEach(el => new bootstrap.Dropdown(el));
-  }
-
-  function getActivePrice(item) {
-    const isDropMode = document.getElementById('p_drop').checked;
-    const isDropshippingMode = document.getElementById('p_dropshipping').checked;
-    if (isDropshippingMode) return parsePrice(item.priceDropshipping);
-    if (isDropMode) return parsePrice(item.priceDrop);
-    return parsePrice(item.price);
+    
+    // Ініціалізуємо всі dropdowns для нових карток
+    document.querySelectorAll('.dropdown-toggle').forEach(el => {
+      new bootstrap.Dropdown(el);
+    });
   }
 
   function applyFilters() {
     const search = document.getElementById('searchInput').value.toLowerCase().trim();
     const activeChecks = Array.from(document.querySelectorAll('.cat-check:checked'));
-    const sortValue = document.getElementById('sortSelect')?.value || 'default';
-
-    let filtered = allProducts.filter(p => {
+    const filtered = allProducts.filter(p => {
       const matchSearch = p.title.toLowerCase().includes(search) || p.code.toLowerCase().includes(search);
       if (activeChecks.length === 0) return matchSearch;
       const itemCats = p.category.split(',').map(s => s.trim());
@@ -1064,245 +675,10 @@
       });
       return matchSearch && matchCat;
     });
-
-    if (sortValue === 'price_asc') {
-      filtered = filtered.slice().sort((a, b) => getActivePrice(a) - getActivePrice(b));
-    } else if (sortValue === 'price_desc') {
-      filtered = filtered.slice().sort((a, b) => getActivePrice(b) - getActivePrice(a));
-    } else if (sortValue === 'name_asc') {
-      filtered = filtered.slice().sort((a, b) => a.title.localeCompare(b.title, 'pl'));
-    } else if (sortValue === 'name_desc') {
-      filtered = filtered.slice().sort((a, b) => b.title.localeCompare(a.title, 'pl'));
-    }
-
     renderCards(filtered);
     updateCategoryCount();
   }
-
-  function resetFilters() {
-    document.getElementById('searchInput').value = '';
-    document.querySelectorAll('.cat-check:checked').forEach(cb => cb.checked = false);
-    document.getElementById('sortSelect').value = 'default';
-    applyFilters();
-  }
-
-  let searchDebounceTimer = null;
-  function debouncedApplyFilters() {
-    clearTimeout(searchDebounceTimer);
-    searchDebounceTimer = setTimeout(applyFilters, 250);
-  }
-
-  let toastTimer = null;
-  function showToast(text) {
-    const el = document.getElementById('toastMessage');
-    if (!el) return;
-    el.textContent = text;
-    el.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => el.classList.remove('show'), 2000);
-  }
-
-  function copySku(code, btnEl) {
-    const finish = () => {
-      showToast(`Skopiowano SKU: ${code}`);
-      if (btnEl) {
-        const original = btnEl.textContent;
-        btnEl.textContent = '✓';
-        btnEl.classList.add('icon-btn-added');
-        setTimeout(() => {
-          btnEl.textContent = original;
-          btnEl.classList.remove('icon-btn-added');
-        }, 1200);
-      }
-    };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(code).then(finish).catch(() => fallbackCopy(code, finish));
-    } else {
-      fallbackCopy(code, finish);
-    }
-  }
-
-  function fallbackCopy(text, onDone) {
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    textarea.style.position = 'fixed';
-    textarea.style.opacity = '0';
-    document.body.appendChild(textarea);
-    textarea.focus();
-    textarea.select();
-    try { document.execCommand('copy'); } catch (e) { /* ігноруємо */ }
-    document.body.removeChild(textarea);
-    if (onDone) onDone();
-  }
-
-  function populateManagerSelect() {
-    const select = document.getElementById('inquiryManagerSelect');
-    if (!select) return;
-    select.innerHTML = MANAGERS.map((m, i) => `<option value="${i}">${m.name}</option>`).join('');
-  }
-
-  function loadInquiryList() {
-    try {
-      const raw = localStorage.getItem(INQUIRY_STORAGE_KEY);
-      inquiryList = raw ? JSON.parse(raw) : [];
-    } catch (e) {
-      inquiryList = [];
-    }
-    updateInquiryBadge();
-  }
-
-  function saveInquiryList() {
-    try {
-      localStorage.setItem(INQUIRY_STORAGE_KEY, JSON.stringify(inquiryList));
-    } catch (e) { /* ігноруємо */ }
-    updateInquiryBadge();
-  }
-
-  function updateInquiryBadge() {
-    const btn = document.getElementById('inquiryFloatBtn');
-    const countEl = document.getElementById('inquiryCount');
-    const totalQty = inquiryList.reduce((sum, i) => sum + i.qty, 0);
-    if (countEl) countEl.textContent = totalQty;
-    if (btn) btn.classList.toggle('hidden', totalQty === 0);
-  }
-
-  function addToInquiry(code, title) {
-    const existing = inquiryList.find(i => i.code === code);
-    if (existing) {
-      existing.qty += 1;
-    } else {
-      inquiryList.push({ code, title, qty: 1 });
-    }
-    saveInquiryList();
-    showToast(`Dodano do listy: ${title}`);
-  }
-
-  function removeFromInquiry(code) {
-    inquiryList = inquiryList.filter(i => i.code !== code);
-    saveInquiryList();
-    renderInquiryModalBody();
-  }
-
-  function changeInquiryQty(code, delta) {
-    const item = inquiryList.find(i => i.code === code);
-    if (!item) return;
-    item.qty = Math.max(1, item.qty + delta);
-    saveInquiryList();
-    renderInquiryModalBody();
-  }
-
-  function setInquiryQty(code, value) {
-    const qty = parseInt(value);
-    if (isNaN(qty) || qty < 1) {
-      renderInquiryModalBody();
-      return;
-    }
-    const item = inquiryList.find(i => i.code === code);
-    if (!item) return;
-    item.qty = qty;
-    saveInquiryList();
-    updateInquiryBadge();
-  }
-
-  function renderInquiryModalBody() {
-    const container = document.getElementById('inquiryItemsList');
-    if (!container) return;
-    if (inquiryList.length === 0) {
-      container.innerHTML = `<div class="inquiry-empty">Lista jest pusta.<br>Dodaj produkty klikając ➕ przy produkcie.</div>`;
-      return;
-    }
-    container.innerHTML = inquiryList.map(item => `
-      <div class="inquiry-item">
-        <div class="inquiry-item-info">
-          <div class="inquiry-item-title">${item.title}</div>
-          <div class="inquiry-item-sku">SKU: ${item.code}</div>
-        </div>
-        <div class="inquiry-qty">
-          <label style="font-size:0.7rem; color:#64748b; margin-right:6px;">Ilość:</label>
-          <input type="number" class="inquiry-qty-input" value="${item.qty}" min="1" max="9999" 
-                 onchange="setInquiryQty('${escapeJSString(item.code)}', this.value)"
-                 onfocus="this.select()">
-        </div>
-        <button class="inquiry-remove" title="Usuń" onclick="removeFromInquiry('${escapeJSString(item.code)}')">✕</button>
-      </div>`).join('');
-  }
-
-  function openInquiryModal() {
-    renderInquiryModalBody();
-    inquiryModal.show();
-  }
-
-  function sendInquiryEmail() {
-    if (inquiryList.length === 0) {
-      showToast('Lista jest pusta');
-      return;
-    }
-    const select = document.getElementById('inquiryManagerSelect');
-    const manager = MANAGERS[Number(select?.value) || 0];
-
-    const subject = `Zapytanie o produkty (${inquiryList.length} poz.)`;
-    
-    let productLines = [];
-    inquiryList.forEach((item, index) => {
-      let title = item.title
-        .replace(/\r?\n|\r/g, ' ')
-        .replace(/\s+/g, ' ')
-        .trim();
-      
-      if (title.length > 70) {
-        title = title.substring(0, 67) + '...';
-      }
-      
-      productLines.push(`[${index + 1}]`);
-      productLines.push(`Nazwa: ${title}`);
-      productLines.push(`SKU: ${item.code}`);
-      productLines.push(`Ilość: ${item.qty} szt.`);
-      productLines.push('');
-    });
-
-    const body = [
-      'Dzień dobry,',
-      '',
-      'Proszę o wycenę / dostępność poniższych produktów:',
-      '',
-      '========================================',
-      '',
-      ...productLines,
-      '========================================',
-      '',
-      'Z poważaniem,'
-    ].join('\n');
-
-    const mailtoUrl = `mailto:${encodeURIComponent(manager.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoUrl;
-  }
-
-  function clearInquiryList() {
-    if (inquiryList.length === 0) return;
-    if (!confirm('Czy na pewno wyczyścić całą listę zapytania?')) return;
-    inquiryList = [];
-    saveInquiryList();
-    renderInquiryModalBody();
-  }
-
-  (function() {
-    if (sessionStorage.getItem('site_auth') === 'true') {
-      document.getElementById('login-overlay').style.display = 'none';
-      loadProducts();
-    }
-  })();
-
-  function checkPassword() {
-    const enteredPassword = document.getElementById('site-password').value;
-    const correctHash = "SGlnaGVyMjAyNg==";
-    if (btoa(enteredPassword) === correctHash) {
-      sessionStorage.setItem('site_auth', 'true');
-      document.getElementById('login-overlay').style.display = 'none';
-      loadProducts();
-    } else {
-      alert("Неправильний пароль!");
-    }
-  }
 </script>
+
 </body>
 </html>
