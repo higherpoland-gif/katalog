@@ -6393,6 +6393,31 @@
       "vatDropshipping": ""
     },
     {
+      "title": "ALUMINIUM PROFESSIONAL TELESCOPIC LADDER  5+5 rungs  EN131",
+      "code": "ED070AL",
+      "category": "Drabiny, Drabiny przegubowe",
+      "catParts": [
+        "Drabiny",
+        "Drabiny przegubowe"
+      ],
+      "mainPriority": 100,
+      "subPriority": 500,
+      "vendor": "GIERRE",
+      "photo": "https://drive.google.com/thumbnail?sz=w600&id=102QvoFRpEY3X94U1kNURoHP4GY69a1L1",
+      "productUrls": [
+        {
+          "label": "🛒 Produkt",
+          "url": "https://sklep.drabiny.info/pl/p/Drabina-aluminiowa-przegubowa-teleskopowa-Gierre-5-5-wielofunkcyjna-na-schody-150-kg-6-m-EN-131/2388"
+        }
+      ],
+      "price": 865.8060749999999,
+      "vat": 1064.9414722499998,
+      "priceDrop": 1030.3092292499998,
+      "vatDrop": 1267.2803519774998,
+      "priceDropshipping": "",
+      "vatDropshipping": ""
+    },
+    {
       "title": "ALUMINIUM PROFESSIONAL TELESCOPIC LADDER  6+6 rungs EN131",
       "code": "ED075AL",
       "category": "Drabiny, Drabiny przegubowe",
